@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+  db:
+    container_name: sql
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: sayali
+      MYSQL_DATABASE: Form
+    volumes:
+      - sql-vol:/var/lib/mysql
+    networks:
+      - two-tier-net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+
+  frontend:
+    container_name: node
+    build:
+      context: .
+    ports:
+      - "80:3000"
+    environment:
+       MYSQL_HOST: sql
+       MYSQL_USER: root
+       MYSQL_PASSWORD: sayali
+       MYSQL_DB: Form
+    networks:
+      - two-tier-net
+    depends_on:
+      db:
+        condition: service_healthy
+
+
+volumes:
+  sql-vol:
+    external: true
+
+networks:
+  two-tier-net:
+    external: true

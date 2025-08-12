@@ -1,0 +1,14 @@
+USE coding_cloud;
+
+CREATE TABLE enquiry (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255),
+  email VARCHAR(255),
+  course VARCHAR(255)
+);
+
+show tables;
+
+select * from enquiry;
+
+delete from enquiry where id="2";

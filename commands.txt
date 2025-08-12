@@ -1,0 +1,6 @@
+for sql container -
+docker run --name sql --network -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=coding_cloud mysql:latest
+
+
+for node container - 
+docker run --name node --network two-tier-net -d -p 80:3000 -e MYSQL_HOST=sql -e MYSQL_USER=root -e MYSQL_PASSWORD=root -e MYSQL_DB=coding_cloud node-app:latest
