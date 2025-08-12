@@ -14,7 +14,7 @@ services:
     networks:
       - two-tier-net
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-psayali"]
       interval: 10s
       timeout: 5s
       retries: 5
