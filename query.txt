@@ -12,3 +12,5 @@ show tables;
 select * from enquiry;
 
 delete from enquiry where id="2";
+
+webhook added !
