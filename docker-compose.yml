@@ -23,7 +23,7 @@ services:
   frontend:
     container_name: node
     build:
-      build: ./frontend
+      context: ./frontend
       image: frontend:latest
     ports:
       - "80:3000"
